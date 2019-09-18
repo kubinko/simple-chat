@@ -14,4 +14,19 @@
   </button>
 </mat-toolbar>
 
-<div class="content"></div>
+<div class="content">
+  <div *ngIf="!user">
+    <h1>Welcome!</h1>
+    <p>To join a chat or to start a new one, please
+      <a color="warn" mat-button (click)="signin()">Sign in</a></p>
+  </div>
+
+  <div *ngIf="user">
+    <router-outlet></router-outlet>
+  </div>
+
+  <blockquote *ngIf="!user">
+    {{quoteText$ | async}}
+    <span>{{quoteAuthor$ | async}}</span>
+  </blockquote>
+</div>

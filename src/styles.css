@@ -3,3 +3,12 @@
 html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+
+body {
+    display: flex;
+    height: calc(100vh - 16px);
+}
+
+app-root {
+    flex: 1;
+}
