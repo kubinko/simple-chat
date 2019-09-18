@@ -1,0 +1,26 @@
+<h2>Start new chat</h2>
+<form id="new-chat-form" [formGroup]="newChatForm" (submit)="startNewChat()">
+    <mat-form-field>
+        <mat-label>Chat name...</mat-label>
+        <input matInput id="chat-name" formControlName="chatName" autocomplete="off">
+    </mat-form-field>
+    <button mat-raised-button color="primary" id="submit" [disabled]="!chatName.value" type="submit">
+        Start
+    </button>
+</form>
+
+<div>
+    <h2>Available chats</h2>
+
+    <mat-card *ngFor="let chat of chats" [routerLink]="['/', chat.id]">
+        <mat-card-content>
+          <span>
+            {{chat.name}}
+          </span>
+          <div id="spacing"></div>
+        </mat-card-content>
+        <!--<mat-card-footer>
+
+        </mat-card-footer>-->
+    </mat-card>
+</div>

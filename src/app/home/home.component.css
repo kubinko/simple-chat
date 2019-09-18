@@ -1,0 +1,27 @@
+#submit {
+  margin-left: 10px;
+}
+
+mat-card:hover {
+  font-weight: bold;
+}
+
+mat-card:not(:last-of-type) {
+  margin-bottom: 2px;
+}
+
+mat-card-content {
+  display: flex;
+  font-size: 16px;
+}
+
+mat-card-content #spacing {
+  flex: 1;
+}
+
+mat-card-footer {
+  padding: 0 0 5px 15px;
+  color: #bbb;
+  font-style: italic;
+  font-size: 12px;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User } from './user.model.mock';
+import { User } from './models/user.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
