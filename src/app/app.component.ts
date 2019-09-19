@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { User } from './models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,7 @@ export class AppComponent implements OnInit {
   quoteAuthor$: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(
+    private dialog: MatDialog,
     public router: Router) { }
 
   ngOnInit() {
@@ -23,13 +26,17 @@ export class AppComponent implements OnInit {
   }
 
   signin() {
-    this.user = new User();
-    this.user.displayName = 'Jozef Mrkvička';
-    this.user.photoURL =
-      'https://upload.wikimedia.org/wikipedia/commons/1/1e/Trump_protest_in_London182_%2842690728125%29_%28cropped%29.jpg';
+    this.dialog.open(LoginComponent).afterClosed().subscribe(
+      () => {
+        this.user = new User();
+        this.user.displayName = 'Jozef Mrkvička';
+        this.user.photoURL =
+          'https://upload.wikimedia.org/wikipedia/commons/1/1e/Trump_protest_in_London182_%2842690728125%29_%28cropped%29.jpg';
+      });
   }
 
   signout() {
     this.user = null;
+    this.router.navigate(['/']);
   }
 }

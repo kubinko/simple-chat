@@ -1,0 +1,12 @@
+:host .mat-dialog-content > * {
+  width: 100%;
+  margin-top: 0px;
+}
+
+:host .mat-dialog-content > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+width: 100%;
+}

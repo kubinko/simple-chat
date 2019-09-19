@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Welcome to Simple chat</h1>
+<div mat-dialog-content>
+    <p>To start chatting let us know who you are.</p>
+
+    <button mat-raised-button color="warn" (click)="loginWithGoogle()">Sign in with Google</button>
+
+    <div>Or</div>
+
+    <form [formGroup]="userForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Join as</mat-label>
+        <input matInput id="name" formControlName="name" placeholder="User name" autocomplete="off" required>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors['required']">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors['minlength']">
+            Name must be at least 4 characters long.
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <button [disabled]="name.invalid" mat-raised-button color="primary" (click)="loginAnonymous()">Anonymously</button>
+</div>
