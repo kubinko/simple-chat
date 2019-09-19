@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      HomeComponent
+      HomeComponent,
+      ChatComponent
    ],
    imports: [
       AppMaterialModule,
