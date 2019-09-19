@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
+import { QuotingService } from './services/quoting.service';
 
 @NgModule({
    declarations: [
@@ -23,9 +25,12 @@ import { LoginComponent } from './login/login.component';
       BrowserAnimationsModule,
       BrowserModule,
       FormsModule,
+      HttpClient,
       ReactiveFormsModule
    ],
-   providers: [],
+   providers: [
+     QuotingService
+   ],
    bootstrap: [
       AppComponent
    ]

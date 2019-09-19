@@ -5,6 +5,7 @@ import { User } from './models/user.model';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
+import { Quote } from './models/quote.model';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,12 @@ export class AppComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
-    this.quoteText$.next('People say nothing is impossible, but I do nothing every day.');
-    this.quoteAuthor$.next('A. A. Milne');
+    const quote = new Quote();
+    quote.text = 'People say nothing is impossible, but I do nothing every day.';
+    quote.author = 'A. A. Milne';
+
+    this.quoteText$.next(quote.text);
+    this.quoteAuthor$.next(quote.author);
   }
 
   signin() {

@@ -28,7 +28,7 @@
 
   <form id="image-form" [formGroup]="imageForm" action="#">
     <input #mediaCapture id="mediaCapture" type="file" accept="image/*" (change)="onFileChange($event)">
-    <button mat-raised-button id="submitImage" title="Add an image" (click)="sendImageMessage()">
+    <button mat-raised-button id="submitImage" title="Add an image" (click)="setImage()">
       <i class="material-icons">image</i>
     </button>
   </form>
