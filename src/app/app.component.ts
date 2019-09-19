@@ -30,8 +30,7 @@ export class AppComponent implements OnInit {
       () => {
         this.user = new User();
         this.user.displayName = 'Jozef Mrkvička';
-        this.user.photoURL =
-          'https://upload.wikimedia.org/wikipedia/commons/1/1e/Trump_protest_in_London182_%2842690728125%29_%28cropped%29.jpg';
+        this.user.photoURL = '../assets/images/profile_placeholder.png';
       });
   }
 
