@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +25,7 @@ import { QuotingService } from './services/quoting.service';
       BrowserAnimationsModule,
       BrowserModule,
       FormsModule,
-      HttpClient,
+      HttpClientModule,
       ReactiveFormsModule
    ],
    providers: [
