@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
 import { QuotingService } from './services/quoting.service';
+import { AppFireModule } from './app-fire.module';
 
 @NgModule({
    declarations: [
@@ -20,6 +21,7 @@ import { QuotingService } from './services/quoting.service';
       LoginComponent
    ],
    imports: [
+      AppFireModule,
       AppMaterialModule,
       AppRoutingModule,
       BrowserAnimationsModule,
