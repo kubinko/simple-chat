@@ -1,27 +1,25 @@
 # SimpleChat
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+This project serves as a demo for some of Firebase capabilities.
 
-## Development server
+## Firebase setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Create [Firebase account ](firebase.google.com).
+2. Install Firebase CLI tools from [GitHub](https://github.com/firebase/firebase-tools).
+3. Authenticate to your Firebase account - run `firebase login` from command line.
 
-## Code scaffolding
+## Project setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Create new project in [Firebase console](console.firebase.google.com).
+2. Create new web app in this project.
+3. Create environment file *environment.ts* in *src\environments*.
+4. Set Firebase config values in environment file from Project settings (can be found in Firebase console via gear icon at the top left).
+5. Install all project packages via `npm install`.
+6. Install packages to work with Firebase in Angular via `npm i firebase @angular/fire`.
 
-## Build
+## App overview
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Application serves as a simple chat and consists of 3 components:
+- **Login** - used for logging in (Google, Anonymous)
+- **Home** - used for creating new chats and loading list of available chats
+- **Chat** - chat window with capability to send/receive text/image chat messages
