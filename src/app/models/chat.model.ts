@@ -3,4 +3,5 @@ export class Chat {
   public name: string;
   public public: boolean;
   public ownerId: string;
+  public createdOn: any;
 }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User } from './models/user.model';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
-import { Quote } from './models/quote.model';
+import { User } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { QuotingService } from './services/quoting.service';
 
 @Component({
   selector: 'app-root',
@@ -13,34 +14,33 @@ import { Quote } from './models/quote.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  user: User = null;
+  user: User;
   quoteText$: BehaviorSubject<string> = new BehaviorSubject('');
   quoteAuthor$: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(
+    private quoteService: QuotingService,
+    private fireAuth: AngularFireAuth,
     private dialog: MatDialog,
-    public router: Router) { }
+    public router: Router) {
+      this.fireAuth.user.subscribe(user => this.user = user);
+    }
 
   ngOnInit() {
-    const quote = new Quote();
-    quote.text = 'People say nothing is impossible, but I do nothing every day.';
-    quote.author = 'A. A. Milne';
-
-    this.quoteText$.next(quote.text);
-    this.quoteAuthor$.next(quote.author);
+    this.quoteService.getQuote().subscribe(
+      response => {
+        this.quoteText$.next(response.body.text);
+        this.quoteAuthor$.next(response.body.author);
+      }
+    );
   }
 
   signin() {
-    this.dialog.open(LoginComponent).afterClosed().subscribe(
-      () => {
-        this.user = new User();
-        this.user.displayName = 'Jozef Mrkvička';
-        this.user.photoURL = '../assets/images/profile_placeholder.png';
-      });
+    this.dialog.open(LoginComponent);
   }
 
   signout() {
-    this.user = null;
+    this.fireAuth.auth.signOut();
     this.router.navigate(['/']);
   }
 }

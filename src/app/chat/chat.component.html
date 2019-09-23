@@ -2,7 +2,7 @@
   <div id="messages">
     <span id="message-filler"></span>
 
-    <div class="message-container" *ngFor="let message of messages">
+    <div class="message-container" *ngFor="let message of messages$ | async">
       <div class="spacing">
         <div class="pic" [style.background-image]="message.senderPhotoUrl ? 'url(' + message.senderPhotoUrl + ')' : ''"></div>
       </div>
@@ -12,7 +12,7 @@
         <img *ngIf="message.photoUrl" [src]="message.photoUrl">
       </div>
 
-      <div class="name">{{ message.senderName }} on {{ message.createdOn | date:'h:mm:ss, d.M.yyyy' }}</div>
+      <div class="name">{{ message.senderName }} on {{ message.createdOn?.toDate() | date:'h:mm:ss, d.M.yyyy' }}</div>
     </div>
   </div>
 

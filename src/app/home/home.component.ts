@@ -3,6 +3,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Chat } from '../models/chat.model';
+import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +15,18 @@ import { Chat } from '../models/chat.model';
 })
 export class HomeComponent implements OnInit {
   newChatForm: FormGroup;
+  user: User;
 
-  public chats: Chat[];
+  public chats$: Observable<Chat[]>;
 
   get chatName() { return this.newChatForm.get('chatName'); }
 
   constructor(
-    private router: Router) { }
+    private fireAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private router: Router) {
+      this.fireAuth.user.subscribe(user => this.user = user);
+    }
 
   ngOnInit() {
     this.newChatForm = new FormGroup({
@@ -28,16 +37,26 @@ export class HomeComponent implements OnInit {
   }
 
   startNewChat() {
-    this.router.navigate(['/', 1]);
+    const id = this.db.createId();
+    const ownerId = this.user.uid;
+
+    this.db.collection('chats')
+      .doc(id)
+      .set({
+        id,
+        ownerId,
+        name: this.chatName.value,
+        public: true
+      });
+
+    this.router.navigate(['/', id]);
   }
 
   loadChats() {
-    const chat = new Chat();
-    chat.id = '1';
-    chat.name = 'Sample chat';
-    chat.ownerId = '1';
-    chat.public = true;
-
-    this.chats = [ chat ];
+    this.chats$ = this.db.collection<Chat>('chats',
+      ref => ref
+        .where('public', '==', true)
+        .orderBy('createdOn', 'desc'))
+      .valueChanges();
   }
 }

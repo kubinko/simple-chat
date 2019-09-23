@@ -13,7 +13,8 @@ export class QuotingService {
   constructor(private http: HttpClient) { }
 
   public getQuote(): Observable<HttpResponse<Quote>> {
-    return this.http.get<Quote>('', { observe: 'response', params: null });
+    return this.http.get<Quote>('https://us-central1-berthotysimplechat.cloudfunctions.net/quotes',
+      { observe: 'response', params: null });
   }
 
 }

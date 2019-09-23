@@ -12,15 +12,15 @@
 <div>
     <h2>Available chats</h2>
 
-    <mat-card *ngFor="let chat of chats" [routerLink]="['/', chat.id]">
+    <mat-card *ngFor="let chat of chats$ | async" [routerLink]="['/', chat.id]">
         <mat-card-content>
           <span>
             {{chat.name}}
           </span>
           <div id="spacing"></div>
         </mat-card-content>
-        <!--<mat-card-footer>
-
-        </mat-card-footer>-->
+        <mat-card-footer>
+          Created on {{ chat.createdOn?.toDate() | date:'H:mm:ss, d.M.yyyy' }}.
+        </mat-card-footer>
     </mat-card>
 </div>
