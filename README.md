@@ -12,10 +12,11 @@ This project serves as a demo for some of Firebase capabilities.
 
 1. Create new project in [Firebase console](console.firebase.google.com).
 2. Create new web app in this project.
-3. Create environment file *environment.ts* in *src\environments*.
-4. Set Firebase config values in environment file from Project settings (can be found in Firebase console via gear icon at the top left).
-5. Install all project packages via `npm install`.
-6. Install packages to work with Firebase in Angular via `npm i firebase @angular/fire`.
+3. Create Cloud Firestore database and Storage via left menu in Firebase console.
+4. Create environment file *environment.ts* in *src\environments*.
+5. Set Firebase config values in environment file from Project settings (can be found in Firebase console via gear icon at the top left).
+6. Install all project packages via `npm install`.
+7. Install packages to work with Firebase in Angular via `npm i firebase @angular/fire`.
 
 ## App overview
 
